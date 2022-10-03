@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CXProviderConfiguration *configuration = [[CXProviderConfiguration alloc] initWithLocalizedName:@"CallKit Demo"];
+    CXProviderConfiguration *configuration = [[CXProviderConfiguration alloc] init];
     configuration.maximumCallGroups = 1;
     configuration.maximumCallsPerCallGroup = 1;
     configuration.includesCallsInRecents = NO;
