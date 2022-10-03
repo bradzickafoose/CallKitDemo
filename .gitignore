@@ -1,0 +1,43 @@
+# Exclude OS X folder attributes
+
+.DS_Store
+
+
+
+# intermedia files
+
+DerivedData/
+
+
+
+# Exclude user-specific XCode files
+
+
+
+
+
+*/project.xcworkspace/
+
+*/xcshareddata/
+
+xcuserdata/
+
+build/
+
+*.xccheckout
+
+*xcschememanagement.plist
+
+
+#CocoaPods
+
+Pods
+
+!Podfile
+
+Podfile.lock
+
+DevelopmentPlist.plist
+xcodebuild.sh
+
+out
