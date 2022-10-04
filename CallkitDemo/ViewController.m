@@ -35,7 +35,7 @@
     [self configAudioSession1];
     NSUUID *uuid = [NSUUID UUID];
     CXCallUpdate *update = [[CXCallUpdate alloc] init];
-    update.remoteHandle = [[CXHandle alloc] initWithType:CXHandleTypePhoneNumber value:@"17192662837"];
+    update.remoteHandle = [[CXHandle alloc] initWithType:CXHandleTypePhoneNumber value:@"18006927753"]; // 1-800-MY-APPLE
     update.localizedCallerName = @"caller nickname";
     update.supportsHolding = NO;
     update.supportsDTMF = NO;
@@ -47,13 +47,13 @@
 
 /// Config audio session using `setCategory:mode:options:error:`
 /// 1. CallKit speaker button does not work unless `AVAudioSessionCategoryOptionAllowBluetoothA2DP` is included in the options
-/// 2. Options set success
+/// 2. Options setting succeeds
 - (void)configAudioSession1 {
     NSLog(@"Using configAudioSession1");
     AVAudioSession *session = [AVAudioSession sharedInstance];
     NSError *error = nil;
     AVAudioSessionCategory category = AVAudioSessionCategoryPlayAndRecord;
-    NSUInteger options = AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionAllowBluetooth | AVAudioSessionCategoryOptionAllowBluetoothA2DP | AVAudioSessionCategoryOptionMixWithOthers;
+    NSUInteger options = AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth;
 
     [session setCategory:category mode:AVAudioSessionModeVoiceChat options:options error:&error];
     if (error) NSLog(@"setCategory error: %@", error);
@@ -68,14 +68,14 @@
 }
 
 /// Config audio session using `setCategory:withOptions:error:` and `setMode:error:`
-/// 1. CallKit speaker button works well
-/// 2. Options set failed，`AVAudioSessionCategoryOptionAllowBluetooth` is invalid
+/// 1. CallKit speaker button works
+/// 2. Options setting failed:，`AVAudioSessionCategoryOptionAllowBluetooth` is invalid; unlike "configAudioSession1", still fails whether `AVAudioSessionCategoryOptionAllowBluetoothA2DP` is included in the options or not
 - (void)configAudioSession2 {
     NSLog(@"Using configAudioSession2");
     AVAudioSession *session = [AVAudioSession sharedInstance];
     NSError *error = nil;
     AVAudioSessionCategory category = AVAudioSessionCategoryPlayAndRecord;
-    NSUInteger options = AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionAllowBluetooth | AVAudioSessionCategoryOptionMixWithOthers;
+    NSUInteger options = AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth;
 
     [session setCategory:category withOptions:options error:&error];
     if (error) NSLog(@"setCategory error: %@", error);
@@ -93,14 +93,14 @@
 }
 
 /// Config audio session use `setCategory:withOptions:error:` and `setMode:error:` and set option again
-/// 1. CallKit speaker button does not work
-/// 2. Options set success
+/// 1. CallKit speaker button does not work unless `AVAudioSessionCategoryOptionAllowBluetoothA2DP` is included in the options
+/// 2. Options setting succeeds
 - (void)configAudioSession3 {
     NSLog(@"Using configAudioSession3");
     AVAudioSession *session = [AVAudioSession sharedInstance];
     NSError *error = nil;
     AVAudioSessionCategory category = AVAudioSessionCategoryPlayAndRecord;
-    NSUInteger options = AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionAllowBluetooth | AVAudioSessionCategoryOptionMixWithOthers;
+    NSUInteger options = AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionAllowBluetooth;
 
     [session setCategory:category withOptions:options error:&error];
     if (error) NSLog(@"setCategory error: %@", error);
